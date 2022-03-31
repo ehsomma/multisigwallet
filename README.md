@@ -6,7 +6,7 @@
 [![GitHub Issues](https://img.shields.io/github/issues/ehsomma/multisigwallet)](https://github.com/ehsomma/multisigwallet/issues)
 [![License](https://img.shields.io/badge/license-MIT-informational)](/LICENSE)
 
-This project implements a "multi signature wallet" which, through an smart contract that allows the creation of a wallet defining a number of owners addresses and a number of confirmations required by these owners to be able to execute a transaction. Only if the required number of owners confirm the pending transaction, it will be executed.
+This project implements a "multi signature wallet" which, through a Solidity smart contract that allows the creation of a wallet defining a number of owners addresses and a number of confirmations required by these owners to be able to execute a transaction. Only if the required number of owners confirm the pending transaction, it will be executed.
 
 ## Technical features and used tools
 * **Solidity**
