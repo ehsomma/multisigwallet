@@ -19,7 +19,7 @@
     "author": "Esteban Hugo Somma",
     "license": "MIT",
     "devDependencies": {
-        "@truffle/hdwallet-provider": "^1.0.34",
+        "@openzeppelin/test-helpers": "^0.5.15",
         "chai": "^4.3.6",
         "chai-as-promised": "^7.1.1",
         "chai-bn": "^0.3.1",

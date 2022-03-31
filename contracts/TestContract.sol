@@ -8,15 +8,15 @@ pragma solidity ^0.8.7;
 /// execut and another function to get de bytes of this function to be sended as 
 /// a tranaction data.
 contract TestContract {
-    uint public i;
+    uint public value;
 
     // Function to test.
     function callMe(uint j) external {
-        i += j;
+        value += j;
     }
 
     // Helper function to get de bytes of the callMe() function.
     function getData() external pure returns (bytes memory) {
-        return abi.encodeWithSignature("callMe(uint256)", 123);
+        return abi.encodeWithSignature("callMe(uint256)", 10);
     }
 }
