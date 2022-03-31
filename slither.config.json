@@ -1,4 +1,4 @@
 {
-    "detectors_to_exclude": "reentrancy-vulnerabilities-3,low-level-calls",
+    "detectors_to_exclude": "reentrancy-events,low-level-calls",
     "filter_paths": "node_modules|Migrations.sol"
 }
