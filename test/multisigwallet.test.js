@@ -51,35 +51,41 @@ contract("multisigwallet test", async accounts => {
 
     //#region Tests
 
-    it("con 2 confirmaciones de cualquiera de los 3 propietarios se deberia poder ejecutar una transaccion", async function () {
+    it("with 2 confirmations from any of the 3 owners you should be able to execute a transaction", async function () {
         // Arrange.
         const expectedResult = new BN(10);
         
         // Step 1: Submits the transaction to confirm and execute.
         await multiSigWalletInstance.submitTransaction(
-            accounts[9], 
+            testContractInstance.address, 
             0, 
             testFunctionData, 
             { from: accounts[0], gas: 3000000 });
-        const tx = new BN(0);
+
+        // Get the last tx index.
+        let txIndex = await multiSigWalletInstance.getTransactionCount();
+        txIndex = txIndex.sub(new BN(1));
 
         // Step 2: Confirms the transaction from the owner 1 (index 0).
-        await multiSigWalletInstance.confirmTransaction(tx, {from: accounts[0]});
+        await multiSigWalletInstance.confirmTransaction(txIndex, {from: accounts[0]});
         
         // Step 3: Confirms the transaction from the owner 2 (index 1).
-        await multiSigWalletInstance.confirmTransaction(tx, {from: accounts[1]});
+        await multiSigWalletInstance.confirmTransaction(txIndex, {from: accounts[1]});
 
         // Step 4: Executes the transaction. 
-        await multiSigWalletInstance.executeTransaction(tx, {from: accounts[0], gas: 3000000 })
+        await multiSigWalletInstance.executeTransaction(txIndex, {from: accounts[0], gas: 3000000 })
 
         //await testContractInstance.callMe(10);
 
         // Act.
         time.advanceBlock();
+        
         const result = await testContractInstance.value();
+        const tx = await multiSigWalletInstance.getTransaction(0);
         
         // Assert.
         expect(result).to.be.bignumber.equal(expectedResult);
+        expect(tx.executed).to.be.equal(true);
     });
 
     //#endregion

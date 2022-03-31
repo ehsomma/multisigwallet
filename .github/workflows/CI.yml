@@ -38,6 +38,20 @@ jobs:
     - name: Show versions (solhint)
       run: npx solhint --version
 
+    - name: Run Truffle Test with CI=true for Codechecks  
+      #run: CI=true truffle test
+      # WORKAROUND: "--reporter eth-gas-reporter" There is a issue with truffle >5.2.24 and eth-gas-report, with this parameter its works ok.
+      # NOTE: The CI=true flag is required for the creation of the gasReporterOutput.json file to be consumed by eth-gas-reporter/codechecks.
+      run: CI=true truffle test --reporter eth-gas-reporter   
+
+    - name: Run Test Coverage
+      run: truffle run coverage
+    
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        
     - name: Run and Check Solhint
       run: npx solhint 'contracts/**/*.sol' -f stylish
 

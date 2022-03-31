@@ -11,8 +11,8 @@ contract TestContract {
     uint public value;
 
     // Function to test.
-    function callMe(uint j) external {
-        value += j;
+    function callMe(uint valueToAdd) external {
+        value += valueToAdd;
     }
 
     // Helper function to get de bytes of the callMe() function.
