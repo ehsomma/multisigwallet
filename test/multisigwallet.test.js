@@ -54,7 +54,8 @@ contract("multisigwallet test", async accounts => {
     it("with 2 confirmations from any of the 3 owners you should be able to execute a transaction", async function () {
         // Arrange.
         const expectedResult = new BN(10);
-        
+
+        // Act.
         // Step 1: Submits the transaction to confirm and execute.
         await multiSigWalletInstance.submitTransaction(
             testContractInstance.address, 
@@ -75,11 +76,8 @@ contract("multisigwallet test", async accounts => {
         // Step 4: Executes the transaction. 
         await multiSigWalletInstance.executeTransaction(txIndex, {from: accounts[0], gas: 3000000 })
 
-        //await testContractInstance.callMe(10);
-
-        // Act.
         time.advanceBlock();
-        
+
         const result = await testContractInstance.value();
         const tx = await multiSigWalletInstance.getTransaction(0);
         
