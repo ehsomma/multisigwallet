@@ -27,7 +27,7 @@ jobs:
     
     - name: Install Truffle (globaly)
       run: npm install truffle@5.4.24 -g
-      #FIX: solidity-coverage not work with truffle >5.4.24.
+      #FIX: solidity-coverage not work with truffle >5.4.29.
       #https://github.com/sc-forks/solidity-coverage/issues/696
       #run: npm install -g truffle
 
@@ -50,6 +50,9 @@ jobs:
       run: CI=true truffle test --reporter eth-gas-reporter   
 
     - name: Run Test Coverage
+      #[IMPORTANT] There is an issue between solidity-coverage and truffle.
+      #FIX: Use solidity-coverage@0.7.17 and truffle@5.4.29
+      ##https://github.com/sc-forks/solidity-coverage/issues/696
       run: truffle run coverage
     
     - name: Coveralls
