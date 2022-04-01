@@ -1,7 +1,7 @@
 {
     "name": "multi-sig-wallet",
     "version": "1.0.0",
-    "description": "multi-sig-wallet",
+    "description": "A 'multi signature wallet' which, through a Solidity smart contract",
     "main": "truffle-config.js",
     "directories": {
         "test": "test"
@@ -18,6 +18,11 @@
     ],
     "author": "Esteban Hugo Somma",
     "license": "MIT",
+    "repository": "github:ehsomma/multisigwallet",
+    "bugs": {
+        "url": "https://github.com/ehsomma/multisigwallet/issues"
+    },
+    "homepage": "https://github.com/ehsomma/multisigwallet",
     "devDependencies": {
         "@openzeppelin/test-helpers": "^0.5.15",
         "chai": "^4.3.6",
