@@ -35,7 +35,7 @@ This project implements a "multi signature wallet" which, through a Solidity sma
 > **NOTE:** For more information see code comments in [`MultiSigWallet.sol`](./contracts/MultiSigWallet.sol).
 
 ## How to use/try
-Mire archivo de migración [`2_contracts_migration.js`](./migrations/2_contracts_migration.js) y el archivo de test  [`multisigwallet.test.js`](./test/multisigwallet.test.js) para más información.
+See migration file [`2_contracts_migration.js`](./migrations/2_contracts_migration.js) and test file [`multisigwallet.test.js`](./test/multisigwallet.test.js) for more information.
 1. Deploy the contract with 3 owners addresses and 2 confirmation required to execute.
 2. Submit a transaction from one of the owners account.
 3. Confirm the pending transaction with two of the owners accounts.
