@@ -26,8 +26,8 @@ jobs:
       run: npm --version
     
     - name: Install Truffle (globaly)
-      #run: npm install truffle@5.4.24 -g
-      run: npm install -g truffle
+      run: npm install truffle@5.4.24 -g
+      #run: npm install -g truffle
 
     - name: Install Solhint (globaly)
       run: npm install -g solhint
@@ -62,9 +62,6 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
-
-        - name: Install dependencies
-          run: npm i @openzeppelin/contracts
 
         - uses: crytic/slither-action@v0.1.1
           with:

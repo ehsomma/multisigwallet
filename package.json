@@ -19,7 +19,6 @@
     "author": "Esteban Hugo Somma",
     "license": "MIT",
     "devDependencies": {
-        "@openzeppelin/contracts": "^4.5.0",
         "@openzeppelin/test-helpers": "^0.5.15",
         "chai": "^4.3.6",
         "chai-as-promised": "^7.1.1",
