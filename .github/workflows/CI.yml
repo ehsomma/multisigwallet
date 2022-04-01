@@ -63,6 +63,9 @@ jobs:
       steps:
         - uses: actions/checkout@v2
 
+        - name: Install dependencies
+          run: npm i @openzeppelin/contracts
+
         - uses: crytic/slither-action@v0.1.1
           with:
             target: 'contracts/'
