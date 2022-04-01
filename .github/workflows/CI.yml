@@ -48,7 +48,8 @@ jobs:
       run: CI=true truffle test --reporter eth-gas-reporter   
 
     - name: Run Test Coverage
-      run: truffle run coverage
+      #run: truffle run coverage
+      run: npm run coverage
     
     - name: Coveralls
       uses: coverallsapp/github-action@master
