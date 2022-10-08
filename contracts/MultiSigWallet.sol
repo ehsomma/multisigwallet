@@ -215,12 +215,37 @@ contract MultiSigWallet {
         // - notExecuted midifier.
         
         // solhint-disable-next-line
-        (bool success, ) = transaction.to.call{value: transaction.value}(transaction.data);
-        require(success, "Tx failed");
+        (bool success, bytes memory returnData) = transaction.to.call{value: transaction.value}(transaction.data);
+        //require(success, "Tx failed");
+
+        if (!success) {
+            revert(_getRevertMsg(returnData));
+            //emit FailedTransaction(msg.sender, txIndex, transaction.data, reason);
+        }
 
         emit ExecuteTransaction(msg.sender, txIndex);
     }
 
+    /// @dev Extracts, decodes and gets the revert reason of the return data of 
+    /// the solidity .call() function.
+    ///
+    /// @param _returnData The .call() return data.
+    ///
+    /// source https://ethereum.stackexchange.com/a/83577.
+    function _getRevertMsg(bytes memory _returnData) internal pure returns (string memory) {
+        // If the _returnData length is less than 68, then the transaction failed 
+        // silently (without a revert message).
+        if (_returnData.length < 68) return "Transaction reverted silently";
+
+        // solhint-disable-next-line no-inline-assembly
+        assembly {
+            // Slice the sighash.
+            _returnData := add(_returnData, 0x04)
+        }
+
+        return abi.decode(_returnData, (string));
+    }
+    
     /// @notice Revokes the transaction corresponding to specified {txIndex} that 
     /// has previously been confirmed by the sender.
     /// 
